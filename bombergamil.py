@@ -1,15 +1,210 @@
-import base64, codecs
+# -*- coding: utf-8 -*-
 
-magic = 'IyAtKi0gY29kaW5nOiB1dGYtOCAtKi0NCiM9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KDQppbXBvcnQgb3MNCmltcG9ydCByYW5kb20NCmltcG9ydCBzbXRwbGliDQppbXBvcnQgc3lzDQppbXBvcnQgZ2V0cGFzcw0KaW1wb3J0IHRpbWUNCg0KIyDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqAgV2VsY29tZSDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqDilqANCg0KZnJvbSB0cWRtIGltcG9ydCB0cmFuZ2UNCmZyb20gY29sb3JhbWEgaW1wb3J0IEZvcmUNCg0KIyBQcm9ncmVzcyBCYXJfTG9hZGluZzoNCmNvbG9yX2JhcnMgPVsNCiAgICANCiAgICBGb3JlLkdSRUVOLA0KICAgIF0NCg0KZm9yIGNvbG9yIGluIGNvbG9yX2JhcnM6DQogICAgZm9yIGkgaW4gdHJhbmdlKGludCg3Kio3LjUpLCAgIzRlNQ0KICAgIC'
+#=========================================================================================================================================
 
-love = 'NtVPNtVPNtVPNtVPNtVPOvLKWsMz9loJS0CFW7oS9vLKW9WKA7LzSlsFImr3WsLzSlsFVtWFNbL29fo3VfVRMipzHhHxIGEIDcXGbAPvNtVPNtVPNtpTSmpj0XQDcipl5mrKA0MJ0bW2AfplpcQDcjpzyhqPNbWlpaQDcpZQZmJmxloD0XVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNAPxONDRONDRONDRNtVPONDRONDRONVPNtVRONDRONDPNtVRONDRONDRONDRNtVPONDRONDRONVPNtQDcNDRONDRONDRONDPNtDRONDRONDRNtVRONDRONDRONVPONDRONDRONDRONDPNtDRONDRONDRNtVN0XDRNuVRONVFONDPRtVRONVFNtDRONVPONDPRtVRONDPNtDRNuVRONVFONDPRtVRONVFNtDRONVPNAPvSNVFNuDPRtVHNuVPNuDPNtVRNuDPNtVHNuVPONVHNtVPSNVFNuDPRtVHNuVPNuDPNtVRNuDPNtQDcNVFRtVFSNVRNuDPNtDPSNVHNuDPNtVRNuDPNtVHNuVPONVFRtVFSNVRNuDPNtDPSNVHNuDPNtVN0XVHNuVPNtVFNuDPRtVPRuVHNuVFRuVPNuDPRtVPRuVFNtVHNuVPNtVFNuDPRtVPRuVHNuVFRuVPNAPvRuBvNtVPNtVFR6VPNuVGbtVPRuVFNtVFR6VPNuVFRtVPRuBvNtVPNtVFR6VPNuVGbtVPRuVFNtQDb6VGbtVPNtVQbuBvNtBvR6VPNuBvRtVQbuBvNtVGbuVPN6VGbtVPNtVQbuBvNtBvR6VPNuBvRtVN0XBwb6VPNtVPN6BvNtVPN6BvN6Bwb6VPN6Bwb6BvN6BvNtBwb6VPNtVPN6BvNtVPN6BvN6Bwb6VPNAPvN6VPNtVPNtBvNtVPN6BvN6VQb6VPNtVQbtBvNtBvNtVPN6VPNtVPNtBvNtVPN6BvN6VQb6VPNtQDbtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVPNtVN0XQDbtVPNtVPNtVPNtVPNt'
 
-god = 'ICAgICAgICAgIMKpY29weXJpZ2h0IGJ5IFwwMzNbOTNtRW5naW5lIFJpcHBlciBcMDMzWzk3bQ0KDQonJycpDQpwcmludCgiICIpDQoNCiNJbmZvcm1hdGlvbjoNCgkNCnVzZXIgPSBpbnB1dCgnXDAzM1s5Mm1Zb3VyIFwwMzNbOTJtR21haWxcMDMzWzk3bSA6XDAzM1s5NG0gJykNClBhc3N3b3JkID0gZ2V0cGFzcy5nZXRwYXNzKCdcMDMzWzkybVlvdXIgXDAzM1s5Mm1QYXNzd29yZFwwMzNbOTdtIDpcMDMzWzk0bSAnKQ0KcHJpbnQoIiAiKQ0Kc2VuZGVyID0gaW5wdXQoJ1wwMzNbOTFtVG8gVmljdGltIFwwMzNbOTFtRW1haWxcMDMzWzk3bSA6IFwwMzNbOTRtJykNCm1lc3NhZ2UgPSBpbnB1dCgnXDAzM1s5Mm1Zb3VyIFwwMzNbOTJtTWVzc2FnZVwwMzNbOTdtIDogXDAzM1s5NG0nKQ0KcHJpbnQoIiAiKQ0KY29sb3IgPSBpbnB1dCgnXDAzM1s5Mm1OdW1iZXIgb2YgXDAzM1s5Mm1zZW5kXDAzM1s5N20gOiBcMDMzWzk0bScpDQpwcmludCgiICIpDQpwcmludCgiXDAzM1s5NG3wn5OuXDAzM1s5Mm1TZW5kaW5nIDogIikNCg0KDQojIFNNVFBfU0VSVkVSX0lORk86DQpzbXRwX3NlcnZlciA9ICdzbXRwLmdtYWlsLmNvbScNCnBvcnQgPSA1ODcNCg0KI0xvZ2luOg0KdHJ5Og0KICAgIHNlcnZlciA9IHNtdHBsaWIuU01UUChzbXRwX3NlcnZlcixwb3J0KSANCiAgICBzZXJ2ZXIuZWhsbygpDQoNCiAgICBpZiBzbXRwX3NlcnZlciA9PSAic210cC5nbWFpbC5jb20iOg0KICAgICAgICAgICAgc2VydmVyLnN0YXJ0dGxzKCkNCiAgICBzZXJ2ZXIubG9naW4odXNlcixQYXNzd29yZCkNCg0KIyBTZW5kaW5nOg0KDQogICAgZm9yIGkgaW4gcmFuZ2UoMSwgY29sb3IrMSk6DQogICAgICAgIHN1YmplY3'
 
-destiny = 'DtCFOipl51pzShMT9gXQxcQDbtVPNtVPNtVT1yp3AuM2HtCFNaEaWioGbtWlNeVUImMKVtXlNaKT5GqJWdMJA0BvNaVPftp3IvnzIwqPNeVPqpovptXlOgMKAmLJqyQDbtVPNtVPNtVUAypaMypv5mMJ5xoJScoPu1p2IlYPOmMJ5xMKVfVT1yp3AuM2HcQDbtVPNtVPNtVUOlnJ50VPtvKQNmZ1f5AT3vzWSpZQZmJmx3oFOSoJScoPOpZQZmJmxloIASGyEpZQZmJmx3oFNtByjjZmAoBGAgVPIcVvxtWFOcQDbtVPNtVPNtVUA5pl5mqTEiqKDhMzk1p2tbXD0XVPNtVUAypaMypv5kqJy0XPxAPvNtVPOjpzyhqPNbW1jjZmAoBGAg4cvEKQNmZ1f5A20tDJkfVSjjZmAoBGqgGJImp2SaMFO3LKApZQZmJmxloFOmMJ50KQNmZ1f5A20tWlxAPvNtVPNAPvNtVPNAPzI4L2IjqPOYMKyvo2SlMRyhqTIlpaIjqQbAPvNtVPOjpzyhqPNbW1ivaWuqVRAuozAyoTIxWlxAPvNtVPOmrKZhMKucqPtcQDcyrTAypUDtp210pTkcLv5GGIEDDKI0nTIhqTywLKEco25SpaWipwbAPvNtVPOjpzyhqPtvVPVcQDbtVPNtpUWcoaDbVyjjZmAoBGEg4cdt77vCKQNmZ1f5ZJ1SpaWipvOpZQZmJmx3oGbvXD0XVPNtVUOlnJ50VPtaKQNmZ1f5AT3vzdQihV9pZQZmJmx3oIEbMFOpZQZmJmxmoKImMKWhLJ1yVSjjZmAoBGqgo3VtKQNmZ1f5Z21jLKAmq29lMPOpZQZmJmx3oKyiqFOyoaEypzIxVTymVTyhL29lpzIwqP4aXD0XVPNtVUOlnJ50VPtvKQNmZ1f5AT3vzdQihV9pZQZmJmxkoHAbMJAeVTyzVUEbMFOCpUEco25mVT9zVPqOpUOfnJAuqTyioaZtLKWyVTkyp3Ztp2IwqKWyWlOcplOyozSvoTIxKT5QnTIwnlOuqPObqUEjpmbiY215LJAwo3IhqP5ao29aoTHhL29gY2kyp3AmMJA1pzIupUOmVvxAPvNtVPOmrKZhMKucqPtcQDb='
+import os
 
-joy = '\x72\x6f\x74\x31\x33'
+import random
 
-trust = eval('\x6d\x61\x67\x69\x63') + eval('\x63\x6f\x64\x65\x63\x73\x2e\x64\x65\x63\x6f\x64\x65\x28\x6c\x6f\x76\x65\x2c\x20\x6a\x6f\x79\x29') + eval('\x67\x6f\x64') + eval('\x63\x6f\x64\x65\x63\x73\x2e\x64\x65\x63\x6f\x64\x65\x28\x64\x65\x73\x74\x69\x6e\x79\x2c\x20\x6a\x6f\x79\x29')
+import smtplib
 
-eval(compile(base64.b64decode(eval('\x74\x72\x75\x73\x74')),'<string>','exec'))
+import sys
+
+import getpass
+
+import time
+
+
+
+# ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ Welcome ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+
+
+
+from tqdm import trange
+
+from colorama import Fore
+
+
+
+# Progress Bar_Loading:
+
+color_bars =[
+
+    
+
+    Fore.GREEN,
+
+    ]
+
+
+
+for color in color_bars:
+
+    for i in trange(int(7**7.5),  #4e5
+
+                    bar_format="{l_bar}%s{bar}%s{r_bar}" % (color, Fore.RESET)):
+
+        pass
+
+
+
+os.system('cls')
+
+print ('''
+
+\033[92m
+
+          
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣶⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠛⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⡇⠀⠙⢿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢉⣽⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⡇⠀⠀⠀⢻⣿⣿⣷⣄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠐⢶⣶⣿⣿⣶⣄⠀⠀⠀⠀⠘⣿⣿⣿⣿⠇⠀⢀⣤⡀⣿⣿⣿⣿⣆⠀⠀⠀⠀
+⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠈⠻⠿⢿⣿⣷⣄⠀⠀⠀⠘⢿⣿⣿⣦⣠⣾⡿⠇⢸⣿⣿⣿⠉⠂⠀⠀⠀
+⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⢿⣿⣿⣿⣿⣿⣿⣶⣄⡀⠀⠀⠀⠀⠀⠀⠉⠑⠀⠀⠀⠈⠻⣿⣿⣿⣧⡀⠀⣾⣿⣿⣿⡇⠀⠀⠀⠀
+⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⡟⠉⠋⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣤⣤⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣾⣿⣿⣿⣿⣿⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠙⠿⠟⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⡿⠿⠿⠛⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⡇⠙⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣧⡀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣦⡀⠀⠀
+⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣉⣉⣉⣉⣁⣀⠀
+⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿⣿⣿⡧
+⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⣠⡾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣤⣶⣶⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⠟⠁
+⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣼⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⣿⣿⡿⠛⠁⠀⠀
+⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠁⠀⡰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠻⢿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⢀⣴⣿⣿⡿⠁⠀⠀⠀⠀
+⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢀⣼⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣷⣦⡀⠀⠈⠙⠿⣿⠛⠿⣯⠑⠤⣠⣴⣿⣿⣿⠿⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣯⣾⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣄⠀⠀⠈⠂⠀⠈⢳⡀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⠀⠉⠻⣿⣿⣿⣦⣀⢀⣤⠀⠀⠁⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⢠⣶⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⣿⣿⣿⣿⣿⣶⣤⡀⠈⠻⣿⣿⣿⣿⣿⣤⣤⣤⣼⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣠⣿⣿⠀⠀⠀⠀⠀⠀⠐⠉⠉⠉⠉⠉⣉⣿⣿⣿⣿⣿⣿⣿⣷⣤⡈⠻⢿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀⠀⠈⣹⣿⣿⣿⣿⣶⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡄⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠧⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠙⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠛⠻⠿⠿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+⠀⠀⠀⠀⠀⠀⠀
+
+
+
+
+                       ©copyright by \033[93mEngine Ripper \033[97m
+
+
+
+''')
+
+print(" ")
+
+
+
+#Information:
+
+	
+
+user = input('\033[92mYour \033[92mGmail\033[97m :\033[94m ')
+
+Password = getpass.getpass('\033[92mYour \033[92mPassword\033[97m :\033[94m ')
+
+print(" ")
+
+sender = input('\033[91mTo Victim \033[91mEmail\033[97m : \033[94m')
+
+message = input('\033[92mYour \033[92mMessage\033[97m : \033[94m')
+
+print(" ")
+
+color = input('\033[92mNumber of \033[92msend\033[97m : \033[94m')
+
+print(" ")
+
+print("\033[94m📮\033[92mSending : ")
+
+
+
+
+
+# SMTP_SERVER_INFO:
+
+smtp_server = 'smtp.gmail.com'
+
+port = 587
+
+
+
+#Login:
+
+try:
+
+    server = smtplib.SMTP(smtp_server,port) 
+
+    server.ehlo()
+
+
+
+    if smtp_server == "smtp.gmail.com":
+
+            server.starttls()
+
+    server.login(user,Password)
+
+
+
+# Sending:
+
+
+
+    for i in range(1, color+1):
+
+        subject = os.urandom(9)
+
+        message = 'From: ' + user + '\nSubject: ' + subject + '\n' + message
+
+        server.sendmail(user, sender, message)
+
+        print ("\033[94m☑\033[97m Email \033[92mSENT\033[97m  :\033[93m %i") % i
+
+        sys.stdout.flush()
+
+    server.quit()
+
+    print ('\033[93m☑\033[97m All \033[97mMessage was\033[92m sent\033[97m ')
+
+    
+
+    
+
+except KeyboardInterrupt:
+
+    print ('[✘] Canceled')
+
+    sys.exit()
+
+except smtplib.SMTPAuthenticationError:
+
+    print(" ")
+
+    print("\033[94m⚠️\033[91mError \033[97m:")
+
+    print ('\033[94m⚠️\033[97mThe \033[93musername \033[97mor \033[93mpassword \033[97myou entered is incorrect.')
+
+    print ("\033[94m⚠️\033[91mCheck if the Options of 'Applications are less secure' is enabled\nCheck at https://myaccount.google.com/lesssecureapps")
+
+    sys.exit()
